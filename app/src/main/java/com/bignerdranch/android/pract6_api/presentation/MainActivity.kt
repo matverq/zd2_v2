@@ -47,7 +47,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.material.Chip
-
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 import com.android.volley.Request
@@ -74,7 +73,6 @@ class MainActivity : ComponentActivity() {
                     composable("menu") { MenuScreen(navController) }
                     composable("discussions") { DiscussionsScreen(navController) }
                     composable("movies") { MoviesScreen() }
-                    composable("favorites") { FavoritesScreen() }
                 }
             }
         }
@@ -116,9 +114,7 @@ fun LoginScreen(navController: NavController) {
             .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            TimeText()
-        }
+        item { TimeText() }
         item {
             Text(
                 text = "WorldCinema",
@@ -175,9 +171,7 @@ fun MenuScreen(navController: NavController) {
             .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            TimeText()
-        }
+        item { TimeText() }
         item {
             Text(
                 text = "Меню",
@@ -195,7 +189,7 @@ fun MenuScreen(navController: NavController) {
         item {
             Chip(
                 label = { Text("Избранное") },
-                onClick = { navController.navigate("favorites") },
+                onClick = { navController.navigate("movies") },
                 modifier = Modifier.fillMaxWidth(0.9f)
             )
         }
@@ -211,9 +205,7 @@ fun DiscussionsScreen(navController: NavController) {
             .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            TimeText()
-        }
+        item { TimeText() }
         item {
             Text(
                 text = "Обсуждения",
@@ -224,7 +216,7 @@ fun DiscussionsScreen(navController: NavController) {
         items(discussions) { title ->
             Chip(
                 label = { Text(title) },
-                onClick = { if (title == "The Witcher") navController.navigate("movies") },
+                onClick = { },
                 modifier = Modifier.fillMaxWidth(0.9f)
             )
         }
@@ -269,9 +261,7 @@ fun MoviesScreen() {
             .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            TimeText()
-        }
+        item { TimeText() }
         item {
             Text(
                 text = "Новое",
@@ -300,19 +290,6 @@ fun MoviesScreen() {
                 modifier = Modifier.fillMaxWidth(0.9f)
             )
         }
-    }
-}
-
-@Composable
-fun FavoritesScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black),
-        contentAlignment = Alignment.Center
-    ) {
-        TimeText()
-        Text(text = "Избранное пусто", color = Color.Gray)
     }
 }
 
